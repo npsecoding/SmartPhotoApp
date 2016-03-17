@@ -126,10 +126,14 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(MapView.this, POIView.class);
+
+                //Pass the locatoin to the POI
+                intent.putExtra("mark_lat", marker.getPosition().latitude);
+                intent.putExtra("mark_long", marker.getPosition().longitude);
+
                 startActivity(intent);
             }
         });
-
 
         LatLng loc_ubc = new LatLng(49.2606052, -123.2459939);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc_ubc));
