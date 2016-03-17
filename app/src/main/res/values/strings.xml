@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SmartPhoto</string>
     <string name="title_activity_map_view">MapView</string>
+    <string name="title_activity_poi_">POI_Activity</string>
+    <string name="title_activity_poiview">POIView</string>
 </resources>

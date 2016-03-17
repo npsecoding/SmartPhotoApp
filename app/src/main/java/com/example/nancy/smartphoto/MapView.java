@@ -1,6 +1,7 @@
 package com.example.nancy.smartphoto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
@@ -78,7 +79,7 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback {
             Location loc = ld.locationdata.get(i);
             Weather weather = wd.weatherdata.get(i);
 
-            // Add a marker in Stanley Park and move the camera
+            // Add a markers onto the map
             LatLng loc_mark = new LatLng( loc.getLat(), loc.getLong());
             mMap.addMarker(new MarkerOptions()
                     .position(loc_mark)
@@ -119,6 +120,16 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback {
                 return info;
             }
         });
+
+        //Transition to the POIView when a marker is clicked
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(MapView.this, POIView.class);
+                startActivity(intent);
+            }
+        });
+
 
         LatLng loc_ubc = new LatLng(49.2606052, -123.2459939);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc_ubc));
