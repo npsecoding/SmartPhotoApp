@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <SwitchPreference
+        android:key="bluetooth"
+        android:title="Pair Device"
+        android:defaultValue="false"
+        android:icon="@drawable/bluetooth"/>
+    <SwitchPreference
+        android:key="gpssync"
+        android:title="Sync New GPS Data"
+        android:defaultValue="false"
+        android:icon="@drawable/gps"/>
+</PreferenceScreen>

@@ -60,6 +60,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nancy.smartphoto.MapView" />
         </activity>
+
+        <activity
+            android:name=".SettingsView"
+            android:label="@string/title_activity_settingsview"
+            android:parentActivityName=".POIView">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nancy.smartphoto.POIView" />
+        </activity>
+
     </application>
 
 </manifest>
