@@ -13,6 +13,10 @@ public class SettingsView extends AppCompatActivity implements SharedPreferences
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Set title of bar to Settings
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("Settings");
+
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())

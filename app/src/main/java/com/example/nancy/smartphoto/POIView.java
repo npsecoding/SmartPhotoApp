@@ -15,6 +15,7 @@ public class POIView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poiview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Point Information");
         setSupportActionBar(toolbar);
 
         double latitude = getIntent().getDoubleExtra("mark_lat", 0);

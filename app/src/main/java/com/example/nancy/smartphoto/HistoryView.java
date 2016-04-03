@@ -18,9 +18,8 @@ public class HistoryView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Logged Points");
         setSupportActionBar(toolbar);
-
-
     }
 
     // Settings on toolbar

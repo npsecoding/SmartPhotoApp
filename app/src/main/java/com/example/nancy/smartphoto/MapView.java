@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapView extends FragmentActivity implements OnMapReadyCallback {
+public class MapView extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private UiSettings mapUiSettings;
@@ -29,6 +30,11 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Set title of bar to Map of Points
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle("Map of Points");
+
         setContentView(R.layout.activity_map_view);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
