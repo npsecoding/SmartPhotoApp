@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +28,8 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private UiSettings mapUiSettings;
 
+    private LatLng clickedMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,13 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        double latitude = getIntent().getDoubleExtra("card_lat", 0);
+        double longitude = getIntent().getDoubleExtra("card_long", 0);
+        clickedMarker = new LatLng(latitude, longitude);
+
+        Toast.makeText(MapView.this, String.valueOf(latitude), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MapView.this, String.valueOf(longitude), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -141,9 +151,8 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
             }
         });
 
-        LatLng loc_ubc = new LatLng(49.2606052, -123.2459939);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc_ubc));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(clickedMarker));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
     }
 }
 

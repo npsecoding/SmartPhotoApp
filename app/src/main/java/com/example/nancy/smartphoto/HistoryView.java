@@ -56,7 +56,7 @@ public class HistoryView extends AppCompatActivity {
             CardHeader header = new CardHeader(this);
             // Add Header to card
             header.setTitle("POI: " + i);
-            card.setTitle("" + i);
+            card.setTitle(ld.locationdata.get(i).getName());
             card.addCardHeader(header);
 
             //Add the picture
@@ -68,23 +68,24 @@ public class HistoryView extends AppCompatActivity {
             card.setOnClickListener(new Card.OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
-                    Toast.makeText(HistoryView.this,"Clickable card", Toast.LENGTH_LONG).show();
-                    //Intent intent = new Intent(HistoryView.this, MapView.class);
+                    Toast.makeText(HistoryView.this,"Clickable card", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HistoryView.this, MapView.class);
 
-                    String title = card.getTitle();
-                    //int liindex = Integer.parseInt(title);
-                    //Toast.makeText(HistoryView.this, liindex, Toast.LENGTH_LONG).show();
+                    String title = card.getCardHeader().getTitle();
+                    int liindex = Integer.parseInt(title.replaceAll("\\D+", ""));
+                    Toast.makeText(HistoryView.this, String.valueOf(liindex), Toast.LENGTH_SHORT).show();
 
-                    //Location location = ld.locationdata.get(liindex);
+                    Location location = ld.locationdata.get(liindex);
+
+                    Toast.makeText(HistoryView.this, String.valueOf(location.getLat()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HistoryView.this, String.valueOf(location.getLong()), Toast.LENGTH_SHORT).show();
 
                     //Pass the location to Map
-                    //intent.putExtra("card_lat", location.getLat());
-                    //intent.putExtra("card_long", location.getLong());
+                    intent.putExtra("card_lat", location.getLat());
+                    intent.putExtra("card_long", location.getLong());
 
-                    //Toast.makeText(HistoryView.this,(int)location.getLat(), Toast.LENGTH_LONG).show();
-                    //Toast.makeText(HistoryView.this, (int)location.getLong(), Toast.LENGTH_LONG).show();
 
-                    //startActivity(intent);
+                    startActivity(intent);
                 }
             });
 
