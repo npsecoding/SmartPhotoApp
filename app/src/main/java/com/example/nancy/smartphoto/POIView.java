@@ -21,7 +21,7 @@ public class POIView extends AppCompatActivity {
         double latitude = getIntent().getDoubleExtra("mark_lat", 0);
         double longitude = getIntent().getDoubleExtra("mark_long", 0);
         LatLng loc = new LatLng(latitude, longitude);
-        Toast.makeText(POIView.this, "lat: " + loc.longitude + " long: " + loc.longitude, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(POIView.this, "lat: " + loc.longitude + " long: " + loc.longitude, Toast.LENGTH_SHORT).show();
 
         String weather = "Sunny with a Temperature of 25 and slight wind";
         String lighting = "Soft and Warm";

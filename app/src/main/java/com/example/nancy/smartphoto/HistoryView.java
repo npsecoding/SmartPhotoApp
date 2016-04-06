@@ -35,7 +35,7 @@ public class HistoryView extends AppCompatActivity {
 
         //Get the list of locations
         final LocationData ld = new LocationData();
-        ld.add(new Location(49.3017049, -123.1417003, "Stanley Park")); //Stanley Park
+        ld.add(new Location(49.3085539, -123.1561047, "Stanley Park")); //Stanley Park
         ld.add(new Location(49.2268144, -123.0004924, "Movie Theatre"));
         ld.add(new Location(49.2606052, -123.2459939, "UBC"));
         ld.add(new Location(49.1748301,-123.1540775, "Skating Oval"));
@@ -61,29 +61,33 @@ public class HistoryView extends AppCompatActivity {
 
             //Add the picture
             CardThumbnail thumb = new CardThumbnail(this);
-            thumb.setDrawableResource(listImages[i]);
+            //thumb.setDrawableResource(listImages[i]);
+
+            String url = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + ld.locationdata.get(i).getLat() + "," + ld.locationdata.get(i).getLong() + "&fov=90&heading=235&pitch=10";
+            //thumb.setUrlResource("https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10");
+            thumb.setUrlResource(url);
+
             card.addCardThumbnail(thumb);
 
             //Click listener for the card
             card.setOnClickListener(new Card.OnCardClickListener() {
                 @Override
                 public void onClick(Card card, View view) {
-                    Toast.makeText(HistoryView.this,"Clickable card", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HistoryView.this,"Clickable card", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HistoryView.this, MapView.class);
 
                     String title = card.getCardHeader().getTitle();
                     int liindex = Integer.parseInt(title.replaceAll("\\D+", ""));
-                    Toast.makeText(HistoryView.this, String.valueOf(liindex), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HistoryView.this, String.valueOf(liindex), Toast.LENGTH_SHORT).show();
 
                     Location location = ld.locationdata.get(liindex);
 
-                    Toast.makeText(HistoryView.this, String.valueOf(location.getLat()), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(HistoryView.this, String.valueOf(location.getLong()), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HistoryView.this, String.valueOf(location.getLat()), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HistoryView.this, String.valueOf(location.getLong()), Toast.LENGTH_SHORT).show();
 
                     //Pass the location to Map
                     intent.putExtra("card_lat", location.getLat());
                     intent.putExtra("card_long", location.getLong());
-
 
                     startActivity(intent);
                 }

@@ -48,8 +48,8 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
         double longitude = getIntent().getDoubleExtra("card_long", 0);
         clickedMarker = new LatLng(latitude, longitude);
 
-        Toast.makeText(MapView.this, String.valueOf(latitude), Toast.LENGTH_SHORT).show();
-        Toast.makeText(MapView.this, String.valueOf(longitude), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MapView.this, String.valueOf(latitude), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MapView.this, String.valueOf(longitude), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -81,7 +81,7 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
         //List of locations and their weather
         LocationData ld = new LocationData();
         WeatherData wd = new WeatherData();
-        ld.add(new Location(49.3017049, -123.1417003, "Stanley Park")); //Stanley Park
+        ld.add(new Location(49.3085539, -123.1561047, "Stanley Park")); //Stanley Park
         wd.add(new Weather(25, "Sunny"));
         ld.add(new Location(49.2268144, -123.0004924, "Movie Theatre"));
         wd.add(new Weather(15, "Cloudy"));
