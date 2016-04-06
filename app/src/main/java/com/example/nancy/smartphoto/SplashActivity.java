@@ -9,11 +9,14 @@ public class SplashActivity extends Activity {
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 3000;
+    protected static MyDBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        dbHandler = new MyDBHandler(this, null, null, 10);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -26,9 +29,10 @@ public class SplashActivity extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+                Bundle bundle = new Bundle();
+
                 Intent i = new Intent(SplashActivity.this, HistoryView.class);
                 startActivity(i);
-
                 // close this activity
                 finish();
             }

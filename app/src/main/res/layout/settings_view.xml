@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
     <SwitchPreference
         android:key="bluetooth"
-        android:title="Pair Device"
+        android:title="Sync Device"
         android:defaultValue="false"
         android:icon="@drawable/bluetooth"/>
     <SwitchPreference
         android:key="gpssync"
-        android:title="Sync New GPS Data"
+        android:title="Fetch New Weather Data"
         android:defaultValue="false"
         android:icon="@drawable/gps"/>
 </PreferenceScreen>

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="25sp"
-            android:text="Weather:"
+            android:text="Today's Weather"
             />
 
     </android.support.v7.widget.CardView>
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="25sp"
-            android:text="Lighting:"
+            android:text="Tomorrow's Weather"
             />
 
     </android.support.v7.widget.CardView>
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="25sp"
-            android:text="Future:"
+            android:text="2 Days Weather"
             />
 
     </android.support.v7.widget.CardView>

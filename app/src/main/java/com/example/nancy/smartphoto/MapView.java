@@ -2,11 +2,13 @@ package com.example.nancy.smartphoto;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -27,7 +29,6 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private UiSettings mapUiSettings;
-
     private LatLng clickedMarker;
 
     @Override
@@ -39,6 +40,7 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
         ab.setTitle("Map of Points");
 
         setContentView(R.layout.activity_map_view);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -81,16 +83,28 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
         //List of locations and their weather
         LocationData ld = new LocationData();
         WeatherData wd = new WeatherData();
-        ld.add(new Location(49.3085539, -123.1561047, "Stanley Park")); //Stanley Park
-        wd.add(new Weather(25, "Sunny"));
-        ld.add(new Location(49.2268144, -123.0004924, "Movie Theatre"));
-        wd.add(new Weather(15, "Cloudy"));
-        ld.add(new Location(49.2606052, -123.2459939, "UBC"));
-        wd.add(new Weather(11, "Rainy"));
-        ld.add(new Location(49.1748301,-123.1540775, "Skating Oval"));
-        wd.add(new Weather(-4, "Cold"));
 
-        for(int i = 0; i < ld.locationdata.size(); i++){
+        int count = 0;
+        Cursor cursor = SplashActivity.dbHandler.getInformation(SplashActivity.dbHandler);
+        if(!cursor.moveToFirst()){
+            Toast.makeText(getApplicationContext(), "Nothing found in DB during Weather Fetch.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            //For each entry in the database, build location and weather objects
+            do {
+                double latitude = cursor.getDouble(1);
+                double longitude = cursor.getDouble(2);
+                String city_name = cursor.getString(4);
+                double todays_temp = cursor.getDouble(8);
+                String todays_clouds = cursor.getString(11);
+                ld.add(new Location(latitude, longitude, city_name));
+                wd.add(new Weather(todays_temp, todays_clouds));
+                count++;
+                Log.i("JBHSBJHBSJ", "SJNKJSNS");
+            } while (cursor.moveToNext());
+        }
+
+        for(int i = 0; i < count; i++){
 
             Location loc = ld.locationdata.get(i);
             Weather weather = wd.weatherdata.get(i);
@@ -146,6 +160,7 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback {
                 //Pass the locatoin to the POI
                 intent.putExtra("mark_lat", marker.getPosition().latitude);
                 intent.putExtra("mark_long", marker.getPosition().longitude);
+                //intent.putExtra("MyDBHandler", dbHandler);
 
                 startActivity(intent);
             }
